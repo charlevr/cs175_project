@@ -1,0 +1,123 @@
+[07:13:27] [EnvServerSocketHandler/INFO]: [STDOUT]: Received from 127.0.0.1:<MissionInit xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaVersion="" PlatformVersion="0.37.0">
+                                <Mission>
+    <About>
+        <Summary>MineRLTreechop-v0</Summary>
+    </About>
+
+    <ModSettings>
+         <MsPerTick>50</MsPerTick>
+          <!--<PrioritiseOffscreenRendering>true</PrioritiseOffscreenRendering>-->
+    </ModSettings>
+
+
+  <ServerSection>
+
+    <ServerInitialConditions>
+      <Time>
+        <!--<StartTime>0</StartTime>-->
+        <AllowPassageOfTime>false</AllowPassageOfTime>
+      </Time>
+      <AllowSpawning>true</AllowSpawning>
+    </ServerInitialConditions>
+
+    <ServerHandlers>
+      <DefaultWorldGenerator forceReset="true" generatorOptions="{&quot;coordinateScale&quot;:684.412,&quot;heightScale&quot;:684.412,&quot;lowerLimitScale&quot;:512.0,&quot;upperLimitScale&quot;:512.0,&quot;depthNoiseScaleX&quot;:200.0,&quot;depthNoiseScaleZ&quot;:200.0,&quot;depthNoiseScaleExponent&quot;:0.5,&quot;mainNoiseScaleX&qu
+[07:13:27] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[07:13:28] [EnvServerSocketHandler/INFO]: [STDOUT]: REPLYING WITH: MALMOOK
+[07:13:28] [Client thread/INFO]: [STDOUT]: Mission received: MineRLTreechop-v0
+[07:13:28] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_HANDLERS
+[07:13:28] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_HANDLERS
+[07:13:29] [Client thread/INFO]: [STDOUT]: Starting command server.
+[07:13:29] [Thread-12/INFO]: [STDOUT]: INFO: ->com(0) Listening for messages on port 10951
+[07:13:29] [Client thread/INFO]: [STDOUT]: CLIENT request state: EVALUATING_WORLD_REQUIREMENTS
+[07:13:29] [Client thread/INFO]: [STDOUT]: CLIENT enter state: EVALUATING_WORLD_REQUIREMENTS
+[07:13:29] [Client thread/INFO]: [STDOUT]: CLIENT request state: CREATING_NEW_WORLD
+[07:13:29] [Client thread/INFO]: [STDOUT]: CLIENT enter state: CREATING_NEW_WORLD
+[07:13:30] [Server thread/INFO]: Starting integrated minecraft server version 1.11.2
+[07:13:30] [Server thread/INFO]: Generating keypair
+[07:13:30] [Server thread/INFO]: Injecting existing block and item data into this server instance
+[07:13:30] [Server thread/INFO]: Applying holder lookups
+[07:13:30] [Server thread/INFO]: Holder lookups applied
+[07:13:31] [Server thread/INFO]: Loading dimension 0 (TEMP_0_94a16b24-f955-4137-a9e2-5875e8bac82d) (net.minecraft.server.integrated.IntegratedServer@6f474739)
+[07:13:31] [Server thread/INFO]: Loading dimension 1 (TEMP_0_94a16b24-f955-4137-a9e2-5875e8bac82d) (net.minecraft.server.integrated.IntegratedServer@6f474739)
+[07:13:31] [Server thread/INFO]: Loading dimension -1 (TEMP_0_94a16b24-f955-4137-a9e2-5875e8bac82d) (net.minecraft.server.integrated.IntegratedServer@6f474739)
+[07:13:31] [Server thread/INFO]: Preparing start region for level 0
+[07:13:32] [Server thread/INFO]: Preparing spawn area: 8%
+[07:13:33] [Server thread/INFO]: Preparing spawn area: 15%
+[07:13:35] [Server thread/INFO]: Preparing spawn area: 25%
+[07:13:36] [Server thread/INFO]: Preparing spawn area: 36%
+[07:13:37] [Server thread/INFO]: Preparing spawn area: 45%
+[07:13:38] [Server thread/INFO]: Preparing spawn area: 55%
+[07:13:39] [Server thread/INFO]: Preparing spawn area: 67%
+[07:13:40] [Server thread/INFO]: Preparing spawn area: 79%
+[07:13:41] [Server thread/INFO]: Preparing spawn area: 91%
+[07:13:42] [Server thread/INFO]: Changing view distance to 4, from 10
+[07:13:42] [Netty Local Client IO #0/INFO]: [STDOUT]: Transformed Name: net.minecraft.client.entity.EntityOtherPlayerMP
+[07:13:42] [Netty Local Client IO #0/INFO]: [STDOUT]: MALMO: Attempting to transform MinecraftServer
+[07:13:42] [Netty Local Client IO #0/INFO]: [STDOUT]: MALMO: Found EntityOtherPlayerMP, attempting to transform it
+[07:13:42] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_MOD_READY
+[07:13:42] [Server thread/INFO]: [STDOUT]: CLIENT request state: WAITING_FOR_SERVER_READY
+[07:13:43] [Client thread/INFO]: [STDOUT]: CLIENT enter state: WAITING_FOR_SERVER_READY
+[07:13:43] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_MOD_READY
+[07:13:43] [Netty Local Client IO #0/INFO]: Server protocol version 2
+[07:13:43] [Netty Server IO #1/INFO]: Client protocol version 2
+[07:13:43] [Netty Server IO #1/INFO]: Client attempting to join with 5 mods : minecraft@1.11.2,FML@8.0.99.99,malmomod@0.37.0,forge@13.20.0.2228,mcp@9.19
+[07:13:43] [Netty Local Client IO #0/INFO]: [Netty Local Client IO #0] Client side modded connection established
+[07:13:43] [Server thread/INFO]: [Server thread] Server side modded connection established
+[07:13:43] [Server thread/INFO]: MineRLAgent[local:E:b4b715ec] logged in with entity id 165 at (-217.5, 71.0, 248.5)
+[07:13:43] [Server thread/INFO]: MineRLAgent joined the game
+[07:13:43] [Server thread/INFO]: [STDOUT]: SERVER request state: DORMANT
+[07:13:43] [Server thread/INFO]: [STDOUT]: SERVER enter state: DORMANT
+[07:13:43] [Server thread/INFO]: [STDOUT]: INCOMING MISSION: Received MissionInit directly through ServerStateMachine constructor.
+[07:13:43] [Server thread/INFO]: [STDOUT]: Mission received: MineRLTreechop-v0
+[07:13:43] [Server thread/INFO]: Received mission: §9MineRLTreechop-v0
+[07:13:43] [Server thread/INFO]: Source: §a127.0.0.1
+[07:13:43] [Server thread/INFO]: [STDOUT]: SERVER request state: BUILDING_WORLD
+[07:13:43] [Server thread/INFO]: [STDOUT]: SERVER enter state: BUILDING_WORLD
+[07:13:43] [Server thread/INFO]: [STDOUT]: SERVER request state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[07:13:45] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - MineRLAgent
+[07:13:45] [Server thread/INFO]: [STDOUT]: SERVER enter state: WAITING_FOR_AGENTS_TO_ASSEMBLE
+[07:13:45] [Server thread/INFO]: [STDOUT]: Experiment requires: 
+[07:13:45] [Server thread/INFO]: [STDOUT]: >>>> MineRLAgent
+[07:13:45] [Client thread/INFO]: [CHAT] Received mission: §9MineRLTreechop-v0
+[07:13:45] [Client thread/INFO]: [CHAT] Source: §a127.0.0.1
+[07:13:45] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2166ms behind, skipping 43 tick(s)
+[07:13:46] [Client thread/INFO]: [STDOUT]: ***Telling server we are ready - MineRLAgent
+[07:13:46] [Client thread/INFO]: [STDOUT]: CLIENT request state: RUNNING
+[07:13:46] [Client thread/INFO]: [STDOUT]: CLIENT enter state: RUNNING
+[07:13:46] [Server thread/INFO]: [STDOUT]: SERVER request state: RUNNING
+[07:13:46] [Server thread/INFO]: [STDOUT]: SERVER enter state: RUNNING
+[07:13:46] [Client thread/INFO]: [STDOUT]: Resized the window
+[07:13:46] [Client thread/INFO]: [STDOUT]: Unpausing
+[07:13:47] [Client thread/INFO]: [CHAT] §l400...
+[07:13:47] [Server thread/INFO]: [STDOUT]: Warning: managed 7/20 ticks this second.
+[07:13:48] [Server thread/INFO]: [STDOUT]: Warning: managed 11/20 ticks this second.
+[07:13:48] [Client thread/INFO]: [CHAT] §l399...
+[07:13:49] [Server thread/INFO]: [STDOUT]: Warning: managed 15/20 ticks this second.
+[07:13:50] [Client thread/INFO]: [CHAT] §l398...
+[07:13:50] [Server thread/INFO]: [STDOUT]: Warning: managed 14/20 ticks this second.
+[07:13:51] [Client thread/INFO]: [CHAT] §l397...
+[07:13:52] [Client thread/INFO]: [CHAT] §l396...
+[07:13:52] [Server thread/INFO]: [STDOUT]: Warning: managed 19/20 ticks this second.
+[07:13:53] [Client thread/INFO]: [CHAT] §l395...
+[07:13:53] [Server thread/INFO]: [STDOUT]: Warning: managed 17/20 ticks this second.
+[07:13:54] [Client thread/INFO]: [CHAT] §l394...
+[07:13:55] [Client thread/INFO]: [CHAT] §l393...
+[07:13:55] [Server thread/INFO]: [STDOUT]: Warning: managed 18/20 ticks this second.
+[07:13:56] [Client thread/INFO]: [CHAT] §l392...
+[07:13:57] [Client thread/INFO]: [CHAT] §l391...
+[07:13:58] [Client thread/INFO]: [CHAT] §l390...
+[07:13:59] [Client thread/INFO]: [CHAT] §l389...
+[07:13:59] [Client thread/INFO]: [CHAT] §l388...
+[07:14:00] [Client thread/INFO]: [CHAT] §l387...
+[07:14:01] [Client thread/INFO]: [CHAT] §l386...
+[07:14:01] [Client thread/INFO]: [CHAT] §l385...
+[07:14:02] [Client thread/INFO]: [CHAT] §l384...
+[07:14:03] [Client thread/INFO]: [CHAT] §l383...
+[07:14:03] [Client thread/INFO]: [CHAT] §l382...
+[07:14:04] [Client thread/INFO]: [CHAT] §l381...
+[07:14:04] [Client thread/INFO]: [CHAT] §l380...
+[07:14:05] [Client thread/INFO]: [CHAT] §l379...
+[07:14:06] [Client thread/INFO]: [CHAT] §l378...
+[07:14:06] [Client thread/INFO]: [CHAT] §l377...
+:runClient FAILED

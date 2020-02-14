@@ -65,6 +65,7 @@ def main():
             actions = agent.act(states=states)
             states, reward, terminal, _ = env.step(actions)
             agent.observe(terminal=terminal, reward=reward)
+            print(reward)
 
     agent.close()
     env.close()
