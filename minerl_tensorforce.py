@@ -51,7 +51,7 @@ def main():
     agent = ProximalPolicyOptimization(
         states = env_states,
         actions = env_actions,  
-        max_episode_timesteps  = 8000
+        max_episode_timesteps  = 1000
     )
     agent.initialize()
     # Train for 300 episodes
