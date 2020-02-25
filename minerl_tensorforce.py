@@ -5,35 +5,6 @@ import logging
 from tensorforce.agents import Agent, DeepQNetwork, ProximalPolicyOptimization
 from tensorforce.environments import Environment, OpenAIGym
 
-'''
-class MineRL_Env(Environment):
-    def __init__(self, minerl_env):
-        super().__init__()
-        self.minerl_env = minerl_env
-
-    def states(self):
-        return self.minerl_env.observation_space.spaces
-
-    def actions(self):
-        return self.minerl_env.action_space.spaces
-
-    # Optional, should only be defined if environment has a natural maximum
-    # episode length
-    def max_episode_timesteps(self):
-        return super().max_episode_timesteps()
-
-    # Optional
-    def close(self):
-        self.minerl_env.close()
-
-    def reset(self):
-        state = self.minerl_env.reset()
-        return state
-
-    def execute(self, actions):
-        next_state, reward, terminal, _ = self.minerl_env.step(actions)
-        return next_state, terminal, reward
-'''
 def main():
     logging.basicConfig(level=logging.DEBUG)
     # Create the environment
@@ -57,15 +28,26 @@ def main():
     # Train for 300 episodes
     for _ in range(300):
         # Initialize episode
+        print("Episode " + str(_) + " training ... ")
         states = env.reset()
         terminal = False
+        total_reward = 0
+        count = 0
 
         while not terminal:
             # Episode timestep
             actions = agent.act(states=states)
             states, reward, terminal, _ = env.step(actions)
             agent.observe(terminal=terminal, reward=reward)
-            print(reward)
+            total_reward += reward
+            count += 1
+
+        print("Episode " + str(_) + " ended.")
+        print("Total reward: " + str(total_reward))
+        print("Average reward: " + str( float(total_reward)/float(count)  ) )
+        print()
+
+        
 
     agent.close()
     env.close()
