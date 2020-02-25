@@ -2,12 +2,12 @@ import gym
 import minerl
 import logging 
 
-from tensorforce.agents import Agent, DeepQNetwork, ProximalPolicyOptimization
+from tensorforce.agents import Agent, DeepQNetwork, ProximalPolicyOptimization, AdvantageActorCritic
 from tensorforce.environments import Environment, OpenAIGym
 
 def main():
     #Creates a log for MineRL
-    logging.basicConfig(level=logging.DEBUG)
+    #logging.basicConfig(level=logging.DEBUG)
 
     # Create the environment
     ENV_NAME = "MineRLTreechop-v0"
@@ -26,10 +26,11 @@ def main():
 
     # Instantiate a Tensorforce agent
     #Can change the type of agent here but different types might have different configurations. 
-    agent = ProximalPolicyOptimization(
+    agent = AdvantageActorCritic(
         states = env_states,
         actions = env_actions,  
-        max_episode_timesteps  = 1000
+        max_episode_timesteps  = 5000,
+        memory = 50000
     )
 
     #Starts the agent
