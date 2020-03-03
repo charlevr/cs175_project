@@ -27,7 +27,7 @@ def main():
     # Instantiate a Tensorforce agent
     #Can change the type of agent here but different types might have different configurations. 
     #Reduce batch size?
-    agent = TrustRegionPolicyOptimization(
+    agent = DeepQNetwork(
         states = env_states,
         actions = env_actions,  
         max_episode_timesteps  = 2000,
