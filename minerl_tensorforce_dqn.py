@@ -23,14 +23,14 @@ def main():
     env_actions = OpenAIGym.specs_from_gym_space(
         space=env.action_space, ignore_value_bounds=True 
     )
-
+    
     # Instantiate a Tensorforce agent
     #Can change the type of agent here but different types might have different configurations. 
     #Reduce batch size?
     agent = DeepQNetwork(
         states = env_states,
         actions = env_actions,  
-        max_episode_timesteps  = 2000,
+        max_episode_timesteps = 1000
     )
 
     #Starts the agent
@@ -57,12 +57,17 @@ def main():
 
             #Agent does something based on its given algorithm
             actions = agent.act(states=states)
+            
+            
 
             #Get resulting state, reward, and status of agent given the action
-            states, reward, terminal, _ = env.step(actions)
+            states, reward, terminal, info = env.step(actions)
 
             #Get a little better based on whether or not the task was finished and how much the reward was
             agent.observe(terminal=terminal, reward=reward)
+
+            if count%10 == 0:
+                print(info)
 
             #Update reward and count
             total_reward += reward
@@ -73,8 +78,6 @@ def main():
         print("Total reward: " + str(total_reward))
         print("Average reward: " + str( float(total_reward)/float(count)  ) )
         print()
-
-        
 
     agent.close()
     env.close()

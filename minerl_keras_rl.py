@@ -12,14 +12,14 @@ from rl.memory import SequentialMemory
 
 
 def main():
-    logging.basicConfig(level=logging.DEBUG)
+    #logging.basicConfig(level=logging.DEBUG)
     ENV_NAME = "MineRLTreechop-v0"
     env = gym.make(ENV_NAME) # A MineRLTreechop-v0 env
-    nb_actions = len(env.action_space.spaces)
+    nb_actions = 9
 
     # Next, we build a very simple model.
     model = Sequential()
-    model.add(Dense(len(env.observation_space.spaces)))
+    model.add(Flatten(input_shape = (64, 64, 3)))
     model.add(Dense(16))
     model.add(Activation('relu'))
     model.add(Dense(16))
@@ -28,7 +28,7 @@ def main():
     model.add(Activation('relu'))
     model.add(Dense(nb_actions))
     model.add(Activation('linear'))
-    print(model.summary())
+    
 
     # Finally, we configure and compile our agent. You can use every built-in Keras optimizer and
     # even the metrics!
@@ -41,6 +41,7 @@ def main():
     # slows down training quite a lot. You can always safely abort the training prematurely using
     # Ctrl + C.
     dqn.fit(env, nb_steps=2500, visualize=True, verbose=2)
+    print(model.summary())
 
     # After training is done, we save the final weights.
     dqn.save_weights('dqn_{}_weights.h5f'.format(ENV_NAME), overwrite=True)
