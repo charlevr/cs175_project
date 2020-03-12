@@ -18,7 +18,7 @@ def main():
 
     environment = OpenAIGym(env)
 
-    agent = Agent.create(agent='dueling_dqn', 
+    agent = Agent.create(agent='trpo', 
         environment=environment,
         max_episode_timesteps = 8000,
         exploration = .3
