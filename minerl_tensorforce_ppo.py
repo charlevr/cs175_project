@@ -6,6 +6,10 @@ from tensorforce.agents import Agent, DeepQNetwork, ProximalPolicyOptimization
 from tensorforce.environments import Environment, OpenAIGym
 from tensorforce.execution import Runner
 
+"""
+exp.=.3, rew_for_touching_wood = .3: 10.5 total rew after 10 eps and jsut jumps around
+"""
+
 def main():
     #Creates a log for MineRL
     #logging.basicConfig(level=logging.DEBUG)
@@ -17,36 +21,32 @@ def main():
     env = gym.make(ENV_NAME)
 
     environment = OpenAIGym(env)
-    agent = Agent.create(agent='dqn', 
-        environment=environment, 
-        max_episode_timesteps = 8000
+
+    agent = Agent.create(agent='ppo', 
+        environment=environment,
+        max_episode_timesteps = 8000,
+        exploration = .3
     )
 
-    print("Created agent")
-    runner = Runner(agent = agent, environment = environment)
-    print("Created runner")
-    runner.run(num_episodes=30)
-    
-    '''
-    # Train for 300 episodes
-    for _ in range(300):
-
-        # Initialize episode
-        print("Starting episode " + str(_))
+    sum_rewards = 0.0
+    rewards_by_episode = []
+    for _ in range(200):
         states = environment.reset()
         terminal = False
-        total_reward = 0
-
+        print("Training episode " + str(_))
         while not terminal:
-            # Episode timestep
-            actions = agent.act(states=states)
+            actions = agent.act(states=states, evaluation=True)
             states, terminal, reward = environment.execute(actions=actions)
-            agent.observe(terminal=terminal, reward=reward)
-            total_reward += reward
+            sum_rewards += reward
+            #print(actions)
+        print("Sum reward so far: " + str(sum_rewards))
+        rewards_by_episode.append((_, sum_rewards))
+        print("Ending episode ", _)
+    print(rewards_by_episode)
+    print('Mean episode reward:', sum_rewards / 200)
 
-        print(total_reward)
-        print("Episode " + str(_) + " ended")
-    '''
+    agent.close()
+    environment.close()
 
 if __name__ == '__main__':
     main()

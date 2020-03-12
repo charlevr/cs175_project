@@ -6,6 +6,7 @@ from tensorforce.agents import Agent, DeepQNetwork, ProximalPolicyOptimization, 
 from tensorforce.environments import Environment, OpenAIGym
 
 def main():
+def main():
     #Creates a log for MineRL
     #logging.basicConfig(level=logging.DEBUG)
 
@@ -15,69 +16,33 @@ def main():
     # Pre-defined or custom environment
     env = gym.make(ENV_NAME)
 
-    #Change action space and observation spae into something readable by tensorforce
-    #These were taken form the OpenAIGym source code. 
-    env_states = OpenAIGym.specs_from_gym_space(
-        space=env.observation_space, ignore_value_bounds=True 
-    )
-    env_actions = OpenAIGym.specs_from_gym_space(
-        space=env.action_space, ignore_value_bounds=True 
-    )
+    environment = OpenAIGym(env)
 
-    # Instantiate a Tensorforce agent
-    #Can change the type of agent here but different types might have different configurations. 
-    #Reduce batch size?
-    agent = TrustRegionPolicyOptimization(
-        states = env_states,
-        actions = env_actions,  
-        max_episode_timesteps  = 2000,
+    agent = Agent.create(agent='dueling_dqn', 
+        environment=environment,
+        max_episode_timesteps = 8000,
+        exploration = .3
     )
 
-    #Starts the agent
-    agent.initialize()
-
-    # Train for 300 episodes
-    for _ in range(300):
-        # Initialize episode
-        print("Episode " + str(_) + " training ... ")
-
-        #Reset the environment so that agent is at starting point
-        states = env.reset()
-
-        #boolean that signifies if episode has ended or not
+    sum_rewards = 0.0
+    rewards_by_episode = []
+    for _ in range(200):
+        states = environment.reset()
         terminal = False
-        
-        #keeps running sum of total reward
-        total_reward = 0
-        count = 0
-
-        #while the episode is not done
+        print("Training episode " + str(_))
         while not terminal:
-            # Episode timestep
-
-            #Agent does something based on its given algorithm
-            actions = agent.act(states=states)
-
-            #Get resulting state, reward, and status of agent given the action
-            states, reward, terminal, _ = env.step(actions)
-
-            #Get a little better based on whether or not the task was finished and how much the reward was
-            agent.observe(terminal=terminal, reward=reward)
-
-            #Update reward and count
-            total_reward += reward
-            count += 1
-
-        #Housekeeping
-        print("Episode " + str(_) + " ended.")
-        print("Total reward: " + str(total_reward))
-        print("Average reward: " + str( float(total_reward)/float(count)  ) )
-        print()
-
-        
+            actions = agent.act(states=states, evaluation=True)
+            states, terminal, reward = environment.execute(actions=actions)
+            sum_rewards += reward
+            #print(actions)
+        print("Sum reward so far: " + str(sum_rewards))
+        rewards_by_episode.append((_, sum_rewards))
+        print("Ending episode ", _)
+    print(rewards_by_episode)
+    print('Mean episode reward:', sum_rewards / 200)
 
     agent.close()
-    env.close()
+    environment.close()
 
 if __name__ == '__main__':
     main()

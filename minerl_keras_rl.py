@@ -1,15 +1,38 @@
 import minerl
+import numpy as np
 import gym
-import logging 
 
 from keras.models import Sequential
-from keras.layers import Dense, Activation, Flatten
+from keras.layers import Dense, Activation, Flatten, Convolution2D, Permute
 from keras.optimizers import Adam
+import keras.backend as K
 
 from rl.agents.dqn import DQNAgent
-from rl.policy import BoltzmannQPolicy
+from rl.policy import LinearAnnealedPolicy, BoltzmannQPolicy, EpsGreedyQPolicy
 from rl.memory import SequentialMemory
+from rl.core import Processor
+from rl.callbacks import FileLogger, ModelIntervalCheckpoint
 
+INPUT_SHAPE = (64, 64)
+WINDOW_LENGTH = 3
+
+class MCProcessor(Processor):
+    def process_observation(self, obs):
+        assert observation.ndim == 3  # (height, width, channel)
+        obs = obs.resize(INPUT_SHAPE).convert('L')  # resize and convert to grayscale
+        processed_observation = np.array(obs)
+        assert processed_observation.shape == INPUT_SHAPE
+        return processed_observation.astype('uint8')  # saves storage in experience memory
+
+    def process_state_batch(self, batch):
+        # We could perform this processing step in `process_observation`. In this case, however,
+        # we would need to store a `float32` array instead, which is 4x more memory intensive than
+        # an `uint8` array. This matters if we store 1M observations.
+        processed_batch = batch.astype('float32') / 255.
+        return processed_batch
+
+    def process_reward(self, reward):
+        return np.clip(reward, -1., 1.)
 
 def main():
     #logging.basicConfig(level=logging.DEBUG)
@@ -32,9 +55,8 @@ def main():
 
     # Finally, we configure and compile our agent. You can use every built-in Keras optimizer and
     # even the metrics!
-    memory = SequentialMemory(limit=5000, window_length=1)
     policy = BoltzmannQPolicy()
-    dqn = DQNAgent(model=model, nb_actions=nb_actions, memory=memory, nb_steps_warmup=10, target_model_update=1e-2, policy=policy)
+    dqn = DQNAgent(model=model, policy=policy)
     dqn.compile(Adam(lr=1e-3), metrics=['mae'])
 
     # Okay, now it's time to learn something! We visualize the training here for show, but this

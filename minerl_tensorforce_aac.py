@@ -17,15 +17,33 @@ def main():
     env = gym.make(ENV_NAME)
 
     environment = OpenAIGym(env)
-    agent = Agent.create(agent='a2c', 
-        environment=environment, 
-        max_episode_timesteps = 8000
+
+    agent = Agent.create(agent='ac', 
+        environment=environment,
+        max_episode_timesteps = 8000,
+        exploration = .03,
+        critic_optimizer = 'evolutionary'
     )
 
-    print("Created agent")
-    runner = Runner(agent = agent, environment = environment)
-    print("Created runner")
-    runner.run(num_episodes=30)
+    sum_rewards = 0.0
+    rewards_by_episode = []
+    for _ in range(200):
+        states = environment.reset()
+        terminal = False
+        print("Training episode " + str(_))
+        while not terminal:
+            actions = agent.act(states=states, evaluation=True)
+            states, terminal, reward = environment.execute(actions=actions)
+            sum_rewards += reward
+            #print(actions)
+        print("Sum reward so far: " + str(sum_rewards))
+        rewards_by_episode.append((_, sum_rewards))
+        print("Ending episode ", _)
+    print(rewards_by_episode)
+    print('Mean episode reward:', sum_rewards / 200)
+
+    agent.close()
+    environment.close()
 
 if __name__ == '__main__':
     main()

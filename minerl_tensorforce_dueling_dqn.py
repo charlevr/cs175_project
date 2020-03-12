@@ -2,8 +2,19 @@ import gym
 import minerl
 import logging 
 
-from tensorforce.agents import Agent, DeepQNetwork, ProximalPolicyOptimization, TrustRegionPolicyOptimization
+'''
+Changed xml for treechop to include reward for touching wood. (find through going to the minerl library files in site-packages)
+
+Regular treechop w/ exploration=.4 has potential with dueling dqn
+
+TODO: maybe add in RewardForStrcuturCopying so that the agent can break the wood
+
+exp=.4, rew touching wood=.3, rew getting wood = 1: about 3.15 total reward
+'''
+
+from tensorforce.agents import Agent, DeepQNetwork, ProximalPolicyOptimization, DuelingDQN
 from tensorforce.environments import Environment, OpenAIGym
+from tensorforce.execution import Runner
 
 def main():
     #Creates a log for MineRL

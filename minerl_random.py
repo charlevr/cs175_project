@@ -15,6 +15,7 @@ def main():
         obs, reward, done, info = env.step(action)
 
         net_reward += reward
+        print(action)
         print("Total reward: ", net_reward)
         
 if __name__ == '__main__':
